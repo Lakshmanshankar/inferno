@@ -1,0 +1,9 @@
+{
+	"editor": {
+		"tab_width": 4,
+		"insert_spaces": false,
+		"formatter": {
+			"command": ["biome", "format", "--stdin-filepath", "{file}"]
+		}
+	}
+}
