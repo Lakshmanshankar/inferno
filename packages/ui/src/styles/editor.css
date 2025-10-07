@@ -1,0 +1,408 @@
+@import "./variables.css";
+
+.editor-placeholder {
+	@apply absolute top-0 left-0 -z-10 text-gray-500;
+}
+
+.editor-container {
+	@apply relative border-none;
+}
+
+.editor-block {
+	@apply border-none outline-none focus:outline-none;
+}
+
+.editor-block {
+	span,
+	em,
+	strong,
+	p,
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-family);
+		color: var(--text-color);
+		font-size: var(--text-base);
+		font-weight: 400;
+	}
+
+	.line-through {
+		text-decoration: line-through;
+	}
+
+	br {
+		display: block;
+		height: 15px;
+	}
+
+	.block-h1,
+	.block-h1 span,
+	.block-h1 em,
+	.block-h1 strong {
+		@apply mt-5 mb-3 text-xl font-semibold;
+	}
+
+	.block-h2,
+	.block-h2 em,
+	.block-h2 span,
+	.block-h2 strong {
+		@apply mt-5 mb-3 text-lg font-semibold;
+	}
+
+	.block-h3,
+	.block-h3 span,
+	.block-h3 em,
+	.block-h3 strong {
+		@apply mt-5 mb-3 text-[30px] font-semibold;
+	}
+
+	.font-bold {
+		font-weight: 600;
+	}
+
+	.text-paragraph {
+		@apply my-3 leading-[1.35] tracking-normal;
+	}
+
+	/* .text-paragraph:has(:not(:empty)) {
+        @apply mb-5;
+    } */
+}
+
+.editor-block a,
+.editor-block a strong,
+.editor-block a em,
+.editor-block a strong.inline-code {
+	@apply text-[var(--primary)] underline;
+}
+
+.code-highlight {
+	@apply rounded-md bg-gray-100 px-1 py-0.5;
+}
+
+li {
+	@apply my-2;
+}
+
+.dark em,
+.dark strong {
+	--text-color: #fff;
+}
+
+.list-ul {
+	@apply my-5 ml-6 list-disc text-lg;
+}
+
+.list-ol {
+	@apply my-5 ml-6 list-decimal text-base;
+}
+
+.list-item {
+	@apply my-0.5 w-full flex-1 text-[var(--text-color)];
+	font-size: var(--text-base);
+}
+
+.nested-list-item {
+	@apply ml-4;
+}
+
+.list-ul .list-ul,
+.list-ol .list-ol,
+.list-ul .list-ol,
+.list-ol .list-ul {
+	@apply my-1 ml-4;
+	counter-reset: item;
+}
+
+.list-ul {
+	@apply list-disc;
+}
+
+.list-ol {
+	@apply list-decimal;
+	counter-reset: item;
+}
+
+.list-ul .nested-list-item {
+	@apply list-[circle];
+}
+
+.list-ol .nested-list-item,
+.list-ol .nested-list-item .list-ol .nested-list-item,
+.list-ul .nested-list-item,
+.list-ul .nested-list-item .list-ul .nested-list-item {
+	@apply list-none;
+}
+
+.list-ol .nested-list-item .list-ol {
+	@apply list-[upper-alpha];
+}
+
+.list-ol .nested-list-item .list-ol .nested-list-item .list-ol {
+	@apply list-[lower-roman];
+}
+
+.list-item .list-item:last-child {
+	@apply mb-0;
+}
+
+.list-ul:has(.list-item[role="checkbox"]) {
+	margin-left: 2px;
+}
+
+.list-item[role="checkbox"] {
+	@apply relative m-0 w-full p-0 pl-8 align-top ring-0 outline-none focus:ring-0 focus:outline-none;
+	display: list-item;
+	list-style: none;
+}
+
+.list-item[role="checkbox"]::before {
+	@apply absolute top-[0.2em] left-0 h-5 w-5 cursor-pointer rounded-sm border-2 border-gray-300 content-[''];
+}
+
+.list-item[aria-checked="true"] {
+	@apply text-[var(--primary)];
+}
+
+.list-item[aria-checked="true"]::before {
+	@apply border-[var(--primary)] bg-[var(--primary)];
+	background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.horizontal-rule {
+	@apply mb-2 border-t border-[var(--hr-gray)] p-0.5;
+}
+
+.horizontal-rule.selected {
+	@apply border-t border-[var(--selection-color)] bg-[var(--selection-color)];
+}
+
+.text-paragraph:has(:focus) {
+	border: 1px solid #4f46e5;
+}
+
+.text-link span {
+	@apply text-[var(--primary)] underline;
+}
+
+.block-quote {
+	@apply my-4 border-l-3 border-gray-300 py-2 pl-4 text-gray-500;
+}
+
+/* Add selection styling */
+::selection {
+	background-color: var(--selection-color);
+	color: var(--selection-text-color);
+}
+
+.text-size-small > span {
+	font-size: 15px !important;
+}
+
+/* COLUMN LAYOUT */
+.column-container {
+	display: grid;
+	grid-auto-rows: auto;
+	/* Remove the minmax constraint */
+	gap: 1rem;
+	height: auto;
+	min-height: unset;
+}
+
+.column-item {
+	background-color: var(--secondary);
+	border: 1px dashed var(--accent);
+	padding: 1rem;
+	border-radius: 0.5rem;
+	min-height: unset;
+	height: auto;
+}
+
+/* CALLOUT STYLES */
+.editor-callout {
+	@apply border-accent relative my-2 rounded-md border p-4 pt-3 pl-10;
+}
+
+.editor-callout-icon {
+	@apply absolute top-[14px] left-2.5 mt-2.5 cursor-pointer;
+}
+
+.editor-callout {
+	border-radius: 0.5rem;
+	font-size: 0.95rem;
+	border: 1px solid;
+}
+
+/* --- Light Mode Styles --- */
+
+.variant-info {
+	background-color: #e0f2fe;
+	/* sky-100 */
+	border-color: #bae6fd;
+	/* sky-200 */
+}
+
+.variant-warning {
+	background-color: #fef3c7;
+	/* yellow-100 */
+	border-color: #fde68a;
+	/* yellow-200 */
+}
+
+.variant-error {
+	background-color: #fee2e2;
+	/* red-100 */
+	border-color: #fecaca;
+	/* red-200 */
+}
+
+.variant-success {
+	background-color: #d1fae5;
+	/* green-100 */
+	border-color: #a7f3d0;
+	/* green-200 */
+}
+
+.variant-note {
+	background-color: #f3f4f6;
+	/* gray-100 */
+	border-color: #e5e7eb;
+	/* gray-200 */
+}
+
+.variant-tip {
+	background-color: #ede9fe;
+	/* violet-100 */
+	border-color: #ddd6fe;
+	/* violet-200 */
+}
+
+/* --- Dark Mode Styles --- */
+
+.dark .variant-info {
+	background-color: #1e3a4c;
+	/* Soft navy-blue */
+	border-color: #264f66;
+}
+
+.dark .variant-warning {
+	background-color: #4a3b16;
+	/* Mellow amber tint */
+	border-color: #5c461d;
+}
+
+.dark .variant-error {
+	background-color: #4c1d1d;
+	/* Soft maroon */
+	border-color: #602828;
+}
+
+.dark .variant-success {
+	background-color: #1e4035;
+	/* Gentle forest green */
+	border-color: #2a5a49;
+}
+
+.dark .variant-note {
+	background-color: #2f2f2f;
+	/* Dim gray */
+	border-color: #454545;
+}
+
+.dark .variant-tip {
+	background-color: #3b2c4a;
+	/* Muted violet */
+	border-color: #4e3a5f;
+}
+
+/* COLLAPSIBLE */
+
+.Collapsible__container {
+	background: var(--secondary);
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	margin-bottom: 0;
+}
+
+.Collapsible__title {
+	cursor: pointer;
+	/* a bit more left padding to fit the larger arrow */
+	padding: 5px 5px 5px 26px;
+	position: relative;
+
+	/* smaller & lighter like Confluence */
+	font-weight: 500;
+	font-size: 0.875rem;
+	color: var(--muted-foreground);
+
+	list-style: none;
+	outline: none;
+
+	/* stop height jumping while typing */
+	display: block;
+	line-height: 1.4;
+	min-height: 24px;
+	/* fixed stable baseline */
+	overflow-wrap: break-word;
+	/* wrap long words gracefully */
+	box-sizing: border-box;
+}
+
+/* ensure nested spans inherit the lighter/smaller title style */
+.Collapsible__title * {
+	font-weight: 500 !important;
+	font-size: 0.875rem !important;
+	color: inherit !important;
+	margin-bottom: 0 !important;
+	margin-top: 0 !important;
+}
+
+.Collapsible__title::marker,
+.Collapsible__title::-webkit-details-marker {
+	display: none;
+}
+
+/* right-pointing arrow (collapsed) — slightly bigger, pinned top-left */
+.Collapsible__title:before {
+	border-style: solid;
+	border-color: transparent;
+	border-width: 6px 9px 6px 9px;
+	/* bigger arrow */
+	border-left-color: var(--color-editor-foreground);
+	display: block;
+	content: "";
+	position: absolute;
+	left: 8px;
+	top: 8px;
+	/* keep at top-left */
+	transform: none;
+	/* don't center vertically */
+}
+
+/* down arrow (open) — same top-left position, just different triangle */
+.Collapsible__container[open] > .Collapsible__title:before {
+	border-color: transparent;
+	border-width: 9px 6px 0 6px;
+	/* bigger down arrow */
+	border-top-color: var(--color-editor-foreground);
+	top: 8px;
+	/* don't move on expand */
+}
+
+.Collapsible__content {
+	/* align with title’s text (26px left padding) */
+	padding: 0 0 0 26px;
+	font-size: 1rem;
+	color: var(--color-editor-foreground);
+}
+
+.Collapsible__content .text-paragraph {
+	margin-bottom: 0 !important;
+}
+
+.Collapsible__collapsed .Collapsible__content {
+	display: none;
+	user-select: none;
+}

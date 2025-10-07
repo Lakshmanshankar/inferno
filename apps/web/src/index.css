@@ -3,5 +3,5 @@
 @import "@inferno/ui/globals.css";
 
 @theme {
-  --font-pacifico: "Pacifico", "sans-serif";
+	--font-pacifico: "Pacifico", "sans-serif";
 }
