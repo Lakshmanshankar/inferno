@@ -1,82 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
 
-@import './typography.css';
-@import './variables.css';
-@import './editor.css';
+@import "./typography.css";
+@import "./variables.css";
+@import "./editor.css";
+
+@source '../components/**/*.{ts,tsx}';
 
 @layer base {
-    p:focus,
-    p:focus-within {
-        outline: none !important;
-        box-shadow: none !important;
-        border: none !important;
-    }
+	p:focus,
+	p:focus-within {
+		outline: none !important;
+		box-shadow: none !important;
+		border: none !important;
+	}
 
-    body {
-        @apply bg-background text-foreground;
-    }
+	body {
+		@apply bg-background text-foreground;
+	}
 }
 
 @theme {
-    --text-tiny: 0.825rem;
-    --text-md: 1rem;
+	--text-tiny: 0.825rem;
+	--text-md: 1rem;
 }
 
 body {
-    overflow-y: scroll;
-    overflow-x: hidden;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 input,
 textarea,
-*[contenteditable='true'] {
-    caret-color: var(--primary) !important;
+*[contenteditable="true"] {
+	caret-color: var(--primary) !important;
 }
 
 .dark input,
 .dark textarea,
-.dark [contenteditable='true'] {
-    caret-color: white !important;
+.dark [contenteditable="true"] {
+	caret-color: white !important;
 }
 
 .inline-code {
-    @apply rounded-md border border-[var(--accent)] bg-neutral-200/50 px-1 text-[var(--primary)] dark:bg-neutral-800/60;
+	@apply rounded-md border border-[var(--accent)] bg-neutral-200/50 px-1 text-[var(--primary)] dark:bg-neutral-800/60;
 }
 
 /* Editor image border styles */
 :root {
-    --img-border-0: oklch(1 0 0);
-    --img-border-1: oklch(0.552 0.016 285.938);
-    --img-border-2: oklch(0 0 0);
+	--img-border-0: oklch(1 0 0);
+	--img-border-1: oklch(0.552 0.016 285.938);
+	--img-border-2: oklch(0 0 0);
 }
 
 .img-border-white {
-    border-color: var(--img-border-0);
+	border-color: var(--img-border-0);
 }
 
 .img-bg-white {
-    background: var(--img-border-0);
+	background: var(--img-border-0);
 }
 
 .img-border-gray {
-    border-color: var(--img-border-1);
+	border-color: var(--img-border-1);
 }
 .img-bg-gray {
-    background: var(--img-border-1);
+	background: var(--img-border-1);
 }
 
 .img-border-black {
-    border-color: var(--img-border-2);
+	border-color: var(--img-border-2);
 }
 .img-bg-black {
-    background: var(--img-border-2);
+	background: var(--img-border-2);
 }
 
 .lexical-image-node img,
-[data-lexical-image-wrapper='true'] img {
-    -webkit-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    /* user-drag: none; */
-    pointer-events: none; /* if you want to completely disable interaction */
+[data-lexical-image-wrapper="true"] img {
+	-webkit-user-drag: none;
+	-moz-user-drag: none;
+	-o-user-drag: none;
+	/* user-drag: none; */
+	pointer-events: none; /* if you want to completely disable interaction */
 }

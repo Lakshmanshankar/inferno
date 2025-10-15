@@ -18,11 +18,11 @@ export default defineConfig(({ mode }) => {
 		server: {
 			port: Number.parseInt(PORT),
 		},
-		output: {
-			manualChunks: {
-				vendors: ["react", "react-dom", "zod"],
-				workspace: ["@inferno/ui"],
-			},
-		},
+		// output: {
+		// 	manualChunks: {
+		// 		vendors: ["react", "react-dom", "zod"],
+		// 		workspace: ["@inferno/ui"],
+		// 	},
+		// },
 	};
 });

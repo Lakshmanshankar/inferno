@@ -10,3 +10,34 @@ pre-push:
     check:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
       run: pnpx @biomejs/biome check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {push_files}
+
+
+commit-msg:
+  commands:
+    commit-lint:
+      run: |
+        commit_msg=$(cat {1})
+        
+        # Check if commit message starts with conventional commit type
+        if ! echo "$commit_msg" | grep -qE "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|-)(\(.+\))?:"; then
+          echo "❌ Commit message must start with a type: feat, fix, docs, style, refactor, perf, test, build, ci, chore, or revert"
+          echo ""
+          echo "Examples:"
+          echo "  feat: add user authentication"
+          echo "  fix: resolve memory leak in cache"
+          echo "  chore: update dependencies"
+          echo "  feat(auth): implement OAuth login"
+          echo ""
+          echo "📝 Commit Message Guidelines:"
+          echo "  - Use imperative mood (e.g., 'add' not 'added' or 'adds')"
+          echo "  - Keep subject line under 72 characters"
+          echo "  - Don't end subject with a period"
+          echo ""
+          exit 1
+        fi
+        
+        # Check subject line length (optional warning, doesn't block)
+        subject=$(echo "$commit_msg" | head -n 1)
+        if [ ${#subject} -gt 72 ]; then
+          echo "⚠️  Warning: Subject line is longer than 72 characters"
+        fi

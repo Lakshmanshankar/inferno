@@ -1,0 +1,5 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@inferno/ts-config/base.app.json",
+	"include": ["src"]
+}
