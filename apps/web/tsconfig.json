@@ -8,7 +8,6 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"],
-			// "@inferno/ui/*": ["../../packages/ui/src/*"],
 		}
 	}
 }

@@ -1,14 +1,12 @@
 {
-	"files": [],
-	"references": [
-		{ "path": "./tsconfig.app.json" },
-		{ "path": "./tsconfig.node.json" }
-	],
+	"extends": "@inferno/ts-config/base.app.json",
 	"compilerOptions": {
 		"baseUrl": ".",
+			    "declaration": true,
+    "declarationMap": true,
 		"paths": {
-			"@/*": ["./src/*"],
-			"@inferno/ui/*": ["./src/*"]
+      		"@inferno/editor/*": ["./src/*"]
 		}
-	}
+	},
+	"include": ["src/**/*"]
 }
