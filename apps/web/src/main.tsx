@@ -7,12 +7,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { initFirebase } from "@inferno/firebase";
 
 initFirebase();
+import { AuthProvider } from "@inferno/firebase/auth";
+
 const AppComponent = () => {
 	return (
 		<>
 			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-				<App />
-				{/* <Toaster richColors /> */}
+				<AuthProvider>
+					<App />
+				</AuthProvider>
 			</ThemeProvider>
 		</>
 	);

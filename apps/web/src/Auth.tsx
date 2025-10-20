@@ -1,10 +1,11 @@
-import { loginWithGoogle, getAuthUser, logout } from "@inferno/firebase/auth";
+import { useAuthUser } from "@inferno/firebase/auth";
 
 export default function Auth() {
-	const user = getAuthUser();
+	const { user, logout, loginWithGoogle, loading } = useAuthUser();
+	if (loading) return <p>Loading...</p>;
 	if (!user) {
 		return (
-			<button type="button" onClick={loginWithGoogle}>
+			<button type="button" onClick={loginWithGoogle} disabled={loading}>
 				Login with Google
 			</button>
 		);
@@ -13,7 +14,7 @@ export default function Auth() {
 	return (
 		<div>
 			<p>Logged in as {user.displayName}</p>
-			<button type="button" onClick={logout}>
+			<button type="button" onClick={logout} disabled={loading}>
 				Logout
 			</button>
 		</div>
