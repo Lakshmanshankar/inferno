@@ -4,7 +4,9 @@ import { ThemeProvider } from "@inferno/ui/hooks/theme";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { initFirebase } from "@inferno/firebase";
 
+initFirebase();
 const AppComponent = () => {
 	return (
 		<>
