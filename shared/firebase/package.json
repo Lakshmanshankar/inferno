@@ -1,0 +1,26 @@
+{
+  "name": "@inferno/firebase",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./auth": "./src/auth/index.tsx",
+    "./adapter": "./src/auth/adapter.ts"
+  },
+  "scripts": {
+    "lint": "biome lint .",
+    "lint:fix": "biome lint . --write",
+    "format": "biome format .",
+    "format:fix": "biome format . --write",
+    "clean": "rm -rf .turbo"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.7",
+    "firebase": "^12.4.0"
+  },
+  "devDependencies": {
+    "@inferno/ts-config": "workspace:*",
+    "@vitejs/plugin-react-swc": "^3.5.0"
+  }
+}
